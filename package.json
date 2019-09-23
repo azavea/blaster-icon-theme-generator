@@ -1,11 +1,12 @@
 {
-  "name": "Blaster Icon Theme Generator",
+  "name": "blaster-icon-theme-generator",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
     "@blasterjs/core": "1.0.0-alpha.8",
+    "netlify-lambda": "1.6.3",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-dropzone": "10.1.9",
@@ -20,7 +21,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && netlify-lambda build",
+    "lambda:build": "netlify-lambda build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

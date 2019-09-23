@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { readFileAsync } from "./readFileAsync";
 import PreviewOutput from "./PreviewOutput";
 import { parse, stringify } from "svgson";
-import { SVGO } from "svgo";
 import { themeGet } from "styled-system";
 import { Image, Box, Button, Card, Icon } from "@blasterjs/core";
 
