@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { parse } from "svgson";
 import { camelCase } from "camel-case";
-import styled from "styled-components";
 import { Card, Text } from "@blasterjs/core";
+import { Button, Icon } from "@blasterjs/core";
+import useClipboard from "react-use-clipboard";
+
+const CopyButton = styled(Button)`
+  position: fixed;
+  top: 30px;
+  right: 30px;
+`
 
 const ThemeOutput = ({icons, ...props}) => {
   const [theme, setTheme] = useState([]);
+  const [isCopied, setCopied] = useClipboard(theme, {
+    successDuration: 1000
+  });
 
-  function findPaths(obj) {
-    return obj
-  }
-
-  const generateIconTheme = async () => {
+  const generateIconTheme = async (icons) => {
     try {
       const iconMappedArrays = await Promise.all(
         icons.map(async i => {
@@ -48,7 +55,15 @@ const ThemeOutput = ({icons, ...props}) => {
   }, [icons]);
 
   return (
-    <Card height="400px" flex="none" overflow="auto">
+    <Card overflow="auto" flex="1">
+      <CopyButton 
+        onClick={setCopied} 
+        scale="small"
+        appearance={isCopied ? "prominent" : "default" } 
+        intent={isCopied ? "success" : "secondary" }
+      >
+        {isCopied ? "Copied" : <Icon name="copy"/> }
+      </CopyButton>
       <Text as="pre">
         {theme}
       </Text>
